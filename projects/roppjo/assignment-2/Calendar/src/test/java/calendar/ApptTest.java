@@ -98,7 +98,7 @@ public class ApptTest {
 
 	 }
 	 @Test
-	 	  public void test023()  throws Throwable  {
+	 	  public void test03()  throws Throwable  {
 
 		 int startHour=10;
 		 int startMinute=15;

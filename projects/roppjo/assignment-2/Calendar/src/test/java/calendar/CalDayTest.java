@@ -59,16 +59,13 @@ public class CalDayTest {
 		CalDay calendar = new CalDay(today);
 		
 		Appt appt1 = new Appt(1,1,1,1,1,"Title","Desc");
-		Appt appt2 = new Appt(1,1,1,1,1,"Title","Desc");
-		Appt appt3 = new Appt(1,1,1,1,1,"Title","Desc");
 		
 		calendar.addAppt(appt1);
 		calendar.iterator();
 		
-		calendar.addAppt(appt2);
 		assertEquals(1,calendar.getSizeAppts());
 		
-		calendar.addAppt(appt3);
+		calendar.addAppt(appt1);
 		assertEquals(2,calendar.getSizeAppts());
 		
 	 }
