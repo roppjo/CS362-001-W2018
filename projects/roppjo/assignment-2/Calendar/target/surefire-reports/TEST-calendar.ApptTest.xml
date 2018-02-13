@@ -59,7 +59,6 @@
     <property name="project.build.outputDirectory" value="/nfs/stak/users/roppjo/SE2/CS362-001-W2018/projects/roppjo/assignment-2/Calendar/target/generated-classes/cobertura"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="calendar.ApptTest" name="test023" time="0"/>
   <testcase classname="calendar.ApptTest" name="test01" time="0"/>
   <testcase classname="calendar.ApptTest" name="test02" time="0">
     <error message="-2" type="java.lang.ArrayIndexOutOfBoundsException">java.lang.ArrayIndexOutOfBoundsException: -2
@@ -98,4 +97,5 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </error>
   </testcase>
+  <testcase classname="calendar.ApptTest" name="test03" time="0"/>
 </testsuite>
