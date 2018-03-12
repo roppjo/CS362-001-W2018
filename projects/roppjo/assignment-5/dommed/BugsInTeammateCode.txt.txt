@@ -1,0 +1,75 @@
+roppjo - Bug Report 
+3/1032018
+Reviewing code from user "dommed"
+
+Bug ID: test01Rand()-01
+
+Symptom/Cause:
+	When determining how many days are in a given month, the month that is given to the
+	function NumDayusInMonth() will be increased by one, meaning that the number of days
+	in a month will be the number of days of the following month. The function would also
+	give an exception error if the given month is December because the function would attempt
+	to retrieve days for a 13th month.
+	
+	Bug in CalendarUtil.java
+	/*
+	Line 30 : int baseDays = DaysInMonth[month+1]; //Should not have the +1
+	*/
+	
+Bug Description:
+	When testing the code, the random test gave an error "java.lang.ArrayIndexOutOfBoundsException: 13"
+	at the number of days in a month function and isValid function. This bug is most likely to be found
+	from random testing because the month would have to be December or an appointment would need to be at 
+	the end of the days bound for this bug to be triggered.
+	
+	Test that caught the bug:
+	/*
+	@Test
+	public void test01Rand() throws Throwable{
+		for(int i=0; i<1000; i++){
+			Random random = new Random();
+			int startHour1=random.nextInt(100)+1;
+			int startMinute1=random.nextInt(100)+1;
+			int startDay1=random.nextInt(100)+1;
+			//int startMonth=random.nextInt(100+100+1)-100;
+			int startMonth1=random.nextInt(12)+1;
+			int startYear1=random.nextInt(1000+1000+1)-1000;
+-> error 	Appt appt1 = new Appt(startHour1, startMinute1, startDay1, startMonth1, startYear1, "", "");
+			...
+	*/.
+			
+Severity: Medium - Bug is only noticeable in a few cases, but does cause program to break when triggered
+Priority: High - Easy bug to fix especially with the potential to break the program in some cases.
+	
+	
+Bug ID: test023() - 02
+
+Symptom/cause:
+	The isValid() function in Appt.java is meant to check all attributes of an appointment and 
+	make sure that they are valid values. This bug is found in this function and it is a flipped
+	boolean variable. When checking for validity of the hour attribute, it will now return true
+	for invalid numbers instead of false. Also, because this is the first attribute checked, if 
+	given actual good values for hour, the other attributes wont be checked.
+	
+	Bug in Appt.java
+	/*
+			if(startHour<0 || startHour>23)
+Line 116:  			this.valid=true; //Should be "this.valid=false;"
+	*/
+	
+Bug Description:
+	Testing the code gave me a failure when asserting that an appointment was returning the correct
+	string. The failed test showed that there was a problem with the hour of the appointment. After 
+	a quick inspection of the code, I found that the hour part of the isValid() function was being 
+	set to a different boolean value than the other parts of the function. Overall, it took very 
+	little time and effort to find the bug and to (potentially) fix it.
+	
+	Test that caught the bug:
+		/*
+			appt.setStartHour(12);
+			testtostring = "\t" + 4 + "/" + 23 + "/" + 1997 + " at " + 12 + ":" + 15 + "pm" + " ," + "My Birthday" + ", " + "This is my birthday!" + "\n";
+-> error	assertEquals(testtostring, appt.toString());
+		*/
+
+Severity: High - No options for setting hours for appointments are valid, meaning that whole functionality is broken
+Priority: High - Very easy bug to fix and will restore functionality

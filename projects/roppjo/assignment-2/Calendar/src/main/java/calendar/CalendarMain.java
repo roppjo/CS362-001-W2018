@@ -25,7 +25,7 @@ public class CalendarMain {
      	int thisMonth;
     	
     	/** the year the user is currently viewing **/
-    	 int thisYear;
+		int thisYear;
     	
     	/** todays date **/
     	int thisDay;
